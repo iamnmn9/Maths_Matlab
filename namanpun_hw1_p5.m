@@ -1,0 +1,1 @@
+namanpun_hw1_p4(@sin,3) %calling function namanpun_hw1_p4 with arguements as function sin and scalar value 3.

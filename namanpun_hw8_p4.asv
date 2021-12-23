@@ -1,0 +1,42 @@
+%%QR computation of Hilbert matrix by 4 different approaches.
+for i=1:10  %loop from 1 to 10
+    A=hilb(i+1);     %matri A of size 2to11
+    %classical approach
+    Q1=qr_classical(A); 
+    Q11= ((transpose(Q1))*Q1)-eye(i+1);
+    Q111(i)=norm(Q11); %computing |Q^TxQ-I|
+    
+    %householder approach
+    Q2=qr_householder(A);
+    Q22= ((transpose(Q2))*Q2)-eye(i+1); 
+    Q222(i)=norm(Q22); %computing |Q^TxQ-I|
+    
+    %modified approach
+    Q3=qr_modified(A);    
+    Q33= ((transpose(Q3))*Q3)-eye(i+1);
+    Q333(i)=norm(Q33); %computing |Q^TxQ-I|
+    
+    %matlab approach
+    [Q4 R4]=qr(A);
+    Q44=((transpose(Q4))*Q4)-eye(i+1);
+    Q444(i)=norm(Q44); %computing |Q^TxQ-I|
+    
+end
+
+K=2:11; %matrix size range
+    
+semilogy(K,Q111); %plot of 1st approach matrix size and |Q^TxQ-I|
+hold on;
+semilogy(K,Q222); %plot of 2nd approach matrix size and |Q^TxQ-I|
+hold on;
+semilogy(K,Q333); %plot of 3rd approach matrix size and |Q^TxQ-I|
+hold on;
+semilogy(K,Q444); %plot of 4th approach matrix size and |Q^TxQ-I|
+hold off;
+
+xlabel('Matrix Size'); %xlabel
+ylabel('Q^TQ-I'); %ylabel
+legend('Classical','Householder','Modified','Matlab') %legend
+
+
+
