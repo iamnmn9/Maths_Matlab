@@ -1,0 +1,30 @@
+%creates a log-log plot showing the error of each approximation as function of grid size.
+%%%PASSING VALUES%%%%
+x=1; 
+h=logspace(-16,-1); %step sizes, hh, ranging from 10^-1 to 10^-16
+f=@(x) cos(x); %function with one varibale x
+order1=1; 
+order2=2;
+
+%using MATLAB: -sin(1)=-0.8415
+truth=-0.8415;
+
+A=EAS501_Kritik4a(f,x,h,order1); %calling previous function with all 4 above parameter.
+B=EAS501_Kritik4a(f,x,h,order2); %calling previous function with all 4 above parameter.
+
+error1=(abs(truth-A)); %computing error value order1
+error2=(abs(truth-B)); %computing error value order2
+
+loglog(h,error1);  %error vs h grid size graph
+xlabel('Grid Spacing','FontSize', 10);  %xlabel
+ylabel('Error','FontSize', 10);  %ylabel
+hold on
+
+loglog(h,error2);
+legend("Order=1","Order=2",'FontSize', 10);  %legend
+hold off
+
+
+
+
+ 
