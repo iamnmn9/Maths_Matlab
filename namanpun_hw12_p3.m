@@ -1,0 +1,21 @@
+function [val]=namanpun_hw12_p3(f,a,b,n)
+%function to approximate SIMPSON's RULE.
+    val=0; %initializing val to 0.
+    h=(b-a)/(n); %splitting up to two steps of equal size.
+    sum1=0; %initializing sum1 to 0.
+    sum2=0; %initializing sum2 to 0.
+    sum3=0; %initializing sum3 to 0.
+    start_value=0; %initializing start|left to the midpoint to 0.
+    center_value=0; %initializing midpoint to 0.
+    end_value=0; %initializing end|right to the midpoint to 0.
+    for i=a:h:b-1 %for loop from a to b-1 with the interval gap of "h"
+        start_value=i; %assigning the start_value to each iteration.
+        end_value=i+h; %assigning the end_value to each iteration.
+        center_value=(start_value+end_value)/2; %assigning the end_value to each iteration.
+        function_value=f([start_value;center_value;end_value]); %passing start center and end value to function f.
+        sum1=function_value(1); %assigning 1st return value to sum1
+        sum2=function_value(2); %assigning 2nd return value to sum2
+        sum3=function_value(3); %assigning 3rd return value to sum3
+        val=val+((end_value-start_value)/6)*(sum1+4*sum2+sum3); %using simpson's rule to calculate val recalling lagrange interpolant
+    end
+end

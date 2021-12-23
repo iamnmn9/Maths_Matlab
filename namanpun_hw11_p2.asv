@@ -1,0 +1,18 @@
+function [f,j] =namanpun_hw11_p2(x)
+x1 = x(1);
+x2 = x(2);
+
+%value of function at x
+p=4*x1^2 + x2^2 -1;
+q=x1^4+cos(pi*x2);
+
+%derivatives
+a=8*x1;
+b=2*x2;
+d=4*x1^3;
+e=-sin(pi*x2);
+
+%function and jacobian
+f=[p;q];
+j=[a b ; d e];
+end

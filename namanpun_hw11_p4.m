@@ -1,0 +1,21 @@
+function [f,g,H]=namanpun_hw11_p4(x)
+%column vector
+x1=x(1);
+x2=x(2);
+
+f = (1-x1)^2 + 100*(x2-x1^2)^2; %function value with passing x
+
+%%calculating hessian matrix by computing second derivative elements.
+H1 = 1200*x1^2 - 400*x2+2;
+H2=-400*x1;
+H3= -400*x1;
+H4= 200;
+
+H=[H1 H2; H3 H4]; %hessian matrix
+
+%%calculating gradience 
+g1= -400*(x2-x1^2)*x1 - 2*(1-x1);
+g2= 200*(x2-x1^2);
+
+g=[g1;g2]; %gradient
+end
